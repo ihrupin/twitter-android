@@ -8,4 +8,5 @@
     <string name="menu_search">Search</string>
     <string name="menu_nearby">Nearby</string>
     <string name="menu_favorites">Favorites</string>
+    <string name="hello">Hello</string>
 </resources>
