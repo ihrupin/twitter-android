@@ -27,24 +27,4 @@ class Prefs {
             return instance!!
         }
     }
-
-    fun getToken(): String {
-        return preferences.getString("token", null)
-    }
-
-    fun setToken(value : String){
-        editor.putString("token", value)
-    }
-
-    fun getExpires() : Long{
-        return preferences.getLong("expires", 0)
-    }
-
-    fun setExpires(value : Long){
-        editor.putLong("expires", value)
-    }
-
-    fun isLoggedIn(): Boolean {
-        return getExpires() > System.currentTimeMillis()
-    }
 }

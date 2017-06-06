@@ -1,5 +1,6 @@
 package com.hrupin.twitterandroid
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
@@ -10,11 +11,15 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.MenuItem
+import android.widget.TextView
 import butterknife.bindView
 
 import com.hrupin.twitterandroid.fragments.FavoritesFragment
 import com.hrupin.twitterandroid.fragments.NearbyFragment
 import com.hrupin.twitterandroid.fragments.SearchFragment
+import com.twitter.sdk.android.core.TwitterCore
+
+import com.hrupin.twitterandroid.R
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -38,6 +43,32 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigationView.setNavigationItemSelectedListener(this)
         navigationView.setCheckedItem(R.id.nav_search)
         attachFragment(SearchFragment.newInstance(), SearchFragment.FRAGMENT_TAG)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val session = TwitterCore.getInstance().sessionManager.activeSession
+        if(session == null){
+            startLoginActivity()
+            return
+        }
+        val authToken = session.authToken
+        if (authToken == null){
+            startLoginActivity()
+            return
+        }
+        if(authToken.isExpired){
+            startLoginActivity()
+            return
+        }
+        val name: TextView = navigationView.getHeaderView(0).findViewById(R.id.tvName) as TextView
+        name.text = session.userName
+    }
+
+    private fun startLoginActivity() {
+        val intent : Intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     override fun onBackPressed() {

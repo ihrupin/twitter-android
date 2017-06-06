@@ -9,4 +9,10 @@
     <string name="menu_nearby">Nearby</string>
     <string name="menu_favorites">Favorites</string>
     <string name="hello">Hello</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="please_grand_internet">Please grand internet access</string>
+
+    <string name="com.twitter.sdk.android.CONSUMER_KEY">Ft5CFINuRWYKsl1WbH1TRRy4E</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">RaGYrLEJ3eA5NhM9do5wLCMlqaFMv9EQYM8GD2qSFPTLph4kjp</string>
+    <string name="install_twitter">Twitter app has not installed. Please install</string>
 </resources>
